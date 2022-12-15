@@ -5,22 +5,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
-
-const weight = 100;
-// ** 중요 action : 컴포넌트에서 어떤 작업을 할지 정해주는 것 **
-function reducer(state = weight, action) {
-	if (action.type === "증가") {
-		state++;
-		return state;
-	} else if (action.type === "감소") {
-		state--;
-		return state;
-	} else {
-		return state;
-	}
-}
-
-let store = createStore(reducer);
+import rootReducer from "./store";
+const reduxDevTool =
+	window.__REDUX_DEVTOOLS_EXTENSION__ &&
+	window.__REDUX_DEVTOOLS_EXTENSION__();
+let store = createStore(rootReducer, reduxDevTool);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
